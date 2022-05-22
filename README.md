@@ -11,7 +11,7 @@ Challenge 1 - Create the code and documentation for using CSV files under data d
 	5. Create dataset called: db_challenge.
 	6. Create bucket in GCP Storage called db_buc.
 		 - Upload .csv files to db_buc bucket in GC Storage.
-	7. In BigQuery, create table for each .csv file within db_challange dataset, upload      data from GC Storage.
+	7. In BigQuery, create table for each .csv file within db_challange dataset, upload data from GC Storage.
 		 - autodetect schema
 		 * Instruments.csv autodetect schema does not work
 		  	- redo with manual + add field: Kind & Specifics
