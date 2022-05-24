@@ -28,7 +28,7 @@ Challenge 2 - Construct a SQL query that returns the titles of albums that can a
     WITH x AS (SELECT AVG(price) AS avg_price, artist 
     FROM `dbproject-351005.db_challenge.albums_table`
     GROUP BY artist)
-    (SELECT y.artist, y.price, y.title, x.avg_price 
+    (SELECT y.title, y.price
     FROM `dbproject-351005.db_challenge.albums_table`
     AS y INNER JOIN x ON y.artist = x.artist WHERE y.price > x.avg_price)
 	
@@ -37,7 +37,7 @@ Challenge 2 - Construct a SQL query that returns the titles of albums that can a
     Giant Steps	     
     Kind of Blue	     
     Ah Um	
-<img width="405" alt="image" src="https://user-images.githubusercontent.com/68199057/169682391-a1a5d366-2bbe-455a-b1b1-442e07070605.png">
+<img width="223" alt="image" src="https://user-images.githubusercontent.com/68199057/170037040-1fd459fb-6fca-46b7-b6ab-e3b3a2d4c5cc.png">
 
     https://console.cloud.google.com/bigquery?sq=624949028035:3af397c98a484d70b808193e39073e55
 --------------------------------------------------------------------------------------
@@ -54,7 +54,7 @@ Challenge 3 - Construct a SQL query that returns the kinds of instruments and nu
     Guitar:    4
     Voice:     3
     Saxophone: 4
-<img width="274" alt="image" src="https://user-images.githubusercontent.com/68199057/169682452-3359f7b4-237f-4e11-8c00-d1267582cce2.png">
+<img width="274" alt="image" src="https://user-images.githubusercontent.com/68199057/170037549-5e474a77-01c1-450c-a301-84b1d48cab29.png">
 
     https://console.cloud.google.com/bigquery?sq=624949028035:a3ebdb5e267d43e8a0e191676259f6cf
 --------------------------------------------------------------------------------------
@@ -83,7 +83,7 @@ Challenge 4 - Construct a SQL query that returns specifics of instruments and po
     Alto_Tenor_Saxophone 19
     Alto_Tenor_Saxophone 57
 	
-<img width="283" alt="image" src="https://user-images.githubusercontent.com/68199057/169682648-78a5e907-cefb-4514-b15c-f28cbf1c8231.png">
+<img width="283" alt="image" src="https://user-images.githubusercontent.com/68199057/170037487-d955f1b5-1da7-41e8-ad65-0be4a585a368.png">
 
     https://console.cloud.google.com/bigquery?sq=624949028035:ce4fc80978684b108d7a90ee23e15967
 
@@ -115,7 +115,7 @@ Challenge 4.Fix - Construct a SQL query that returns specifics of instruments an
     Alto_Tenor_Saxophone 19
     Alto_Tenor_Saxophone 57
 
-<img width="280" alt="image" src="https://user-images.githubusercontent.com/68199057/169682737-007e96ec-8b05-473e-9990-8a00c7104b17.png">
+<img width="280" alt="image" src="https://user-images.githubusercontent.com/68199057/170037361-f2376a1a-3856-4f01-941e-f5ff8d3bad86.png">
 
     https://console.cloud.google.com/bigquery?sq=624949028035:e9140454faa04b1b9f01b7832962a510
 
@@ -123,18 +123,26 @@ Challenge 4.Fix - Construct a SQL query that returns specifics of instruments an
 
 Challenge 5 - Construct a SQL query that returns the average number of likes per post for each instrument specifics.
 
-	  WITH y AS (WITH x AS (SELECT COUNT(post_id) AS count_post_id, post_id, 
-	  FROM `dbproject-351005.db_challenge.likes_table` GROUP BY post_id) 
-	  SELECT id, instrument_kind, x.count_post_id 
-	  FROM `dbproject-351005.db_challenge.posts_table` INNER JOIN x ON id = post_id) 
-	  SELECT instrument_kind, SUM(count_post_id) / COUNT(instrument_kind) AS Average 
-	  FROM y GROUP BY instrument_kind
+	  WITH z AS (
+  		WITH y AS (
+    			WITH x AS (
+      				SELECT COUNT(post_id) AS count_post_id, post_id, 
+      				FROM `dbproject-351005.db_challenge.likes_table` 
+      				GROUP BY post_id) 
+  		SELECT id, instrument_kind, x.count_post_id
+ 		FROM `dbproject-351005.db_challenge.posts_table` 
+  		INNER JOIN x ON id = post_id) 
+	SELECT instrument_kind, SUM(count_post_id) / COUNT(instrument_kind) AS average 
+	FROM y GROUP BY instrument_kind)
+	SELECT specifics, z.average
+	FROM `dbproject-351005.db_challenge.instruments_table`
+	INNER JOIN z ON kind = instrument_kind
 
   Results
   
-    Saxophone: 3.0
-    Trumpet:   3.5
-    Voice:     4.0
-<img width="234" alt="image" src="https://user-images.githubusercontent.com/68199057/169682873-beb7672c-aa77-4e8c-b788-c4f565fb33e2.png">
+    Alto_Tenor_Saxophone: 3.0
+    Martin_Committee_Trumpet: 3.5
+    Soprano_through_Baritone:  4.0
+<img width="349" alt="image" src="https://user-images.githubusercontent.com/68199057/170037260-58df8c9c-b35c-4d0f-a808-47a050836a56.png">
 
     https://console.cloud.google.com/bigquery?sq=624949028035:aee44dd9c2744146b927b1a5bf0e3ca9
