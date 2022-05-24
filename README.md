@@ -32,11 +32,7 @@ Challenge 2 - Construct a SQL query that returns the titles of albums that can a
     FROM `dbproject-351005.db_challenge.albums_table`
     AS y INNER JOIN x ON y.artist = x.artist WHERE y.price > x.avg_price)
 	
-  Results
-  
-    Giant Steps	     
-    Kind of Blue	     
-    Ah Um	
+  Results	
 <img width="223" alt="image" src="https://user-images.githubusercontent.com/68199057/170037040-1fd459fb-6fca-46b7-b6ab-e3b3a2d4c5cc.png">
 
     https://console.cloud.google.com/bigquery?sq=624949028035:3af397c98a484d70b808193e39073e55
@@ -48,12 +44,6 @@ Challenge 3 - Construct a SQL query that returns the kinds of instruments and nu
 	FROM `dbproject-351005.db_challenge.likes_table` GROUP BY instrument_kind
 	  
   Results
-  
-    Piano:     4 
-    Trumpet:   2 
-    Guitar:    4
-    Voice:     3
-    Saxophone: 4
 <img width="274" alt="image" src="https://user-images.githubusercontent.com/68199057/170037549-5e474a77-01c1-450c-a301-84b1d48cab29.png">
 
     https://console.cloud.google.com/bigquery?sq=624949028035:a3ebdb5e267d43e8a0e191676259f6cf
@@ -66,23 +56,7 @@ Challenge 4 - Construct a SQL query that returns specifics of instruments and po
     INNER JOIN `dbproject-351005.db_challenge.instruments_table`  
     ON instrument_kind = kind
 	
-  Results
-          
-   
-    Martin_Committee_Trumpet 20
-    Martin_Committee_Trumpet 19
-    Gibson_L5_CES	20
-    Gibson_L5_CES 19
-    Gibson_L5_CES	32
-    Gibson_L5_CES	44
-    Soprano_through_Baritone 20
-    Soprano_through_Baritone 32
-    Soprano_through_Baritone 44
-    Alto_Tenor_Saxophone 32
-    Alto_Tenor_Saxophone 44
-    Alto_Tenor_Saxophone 19
-    Alto_Tenor_Saxophone 57
-	
+  Results	
 <img width="283" alt="image" src="https://user-images.githubusercontent.com/68199057/170037487-d955f1b5-1da7-41e8-ad65-0be4a585a368.png">
 
     https://console.cloud.google.com/bigquery?sq=624949028035:ce4fc80978684b108d7a90ee23e15967
@@ -96,25 +70,6 @@ Challenge 4.Fix - Construct a SQL query that returns specifics of instruments an
     ON instrument_kind = kind
 	
   Results
-  
-    Soprano_through_Baritone 20
-    Soprano_through_Baritone 32
-    Soprano_through_Baritone 44
-    Gibson_L5_CES 20
-    Gibson_L5_CES	19
-    Gibson_L5_CES 32
-    Gibson_L5_CES 44
-    Piano 20
-    Piano 44
-    Piano 19
-    Piano 57
-    Martin_Committee_Trumpet 20
-    Martin_Committee_Trumpet 19
-    Alto_Tenor_Saxophone 32
-    Alto_Tenor_Saxophone 44
-    Alto_Tenor_Saxophone 19
-    Alto_Tenor_Saxophone 57
-
 <img width="280" alt="image" src="https://user-images.githubusercontent.com/68199057/170037361-f2376a1a-3856-4f01-941e-f5ff8d3bad86.png">
 
     https://console.cloud.google.com/bigquery?sq=624949028035:e9140454faa04b1b9f01b7832962a510
@@ -139,10 +94,6 @@ Challenge 5 - Construct a SQL query that returns the average number of likes per
 	INNER JOIN z ON kind = instrument_kind
 
   Results
-  
-    Alto_Tenor_Saxophone: 3.0
-    Martin_Committee_Trumpet: 3.5
-    Soprano_through_Baritone:  4.0
 <img width="349" alt="image" src="https://user-images.githubusercontent.com/68199057/170037260-58df8c9c-b35c-4d0f-a808-47a050836a56.png">
 
     https://console.cloud.google.com/bigquery?sq=624949028035:aee44dd9c2744146b927b1a5bf0e3ca9
